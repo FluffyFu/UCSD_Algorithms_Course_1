@@ -1,5 +1,7 @@
 *.pyc
 *.DS_Store
+.hypothesis/
+.ropeproject/
 
 # ignore other types of starter files except python.
 
