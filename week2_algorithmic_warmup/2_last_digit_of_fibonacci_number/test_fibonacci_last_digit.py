@@ -10,7 +10,9 @@ def test_fibonacci_last_digit():
     for n in np.random.randint(low=n_min, high=n_max, size=n):
         assert get_fibonacci_last_digit(n) == get_fibonacci_last_digit_naive(n)
 
+
 def test_fibonacci_last_digit_cases():
     assert get_fibonacci_last_digit(327305) == 5
     assert get_fibonacci_last_digit(3) == 2
     assert get_fibonacci_last_digit(331) == 9
+    assert get_fibonacci_last_digit(999999) == 6

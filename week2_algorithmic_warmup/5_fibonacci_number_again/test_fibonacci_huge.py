@@ -7,7 +7,12 @@ import hypothesis.strategies as st
 def test_get_fibonacci_huge(n, m):
     assert get_fibonacci_huge(n, m) == get_fibonacci_huge_naive(n, m)
 
+
 def test_get_fibonacci_huge_cases():
     n = 2816213588
     m = 239
     assert get_fibonacci_huge(n, m) == 151
+
+    n = 60
+    m = 10
+    assert get_fibonacci_huge(n, m) == 0
