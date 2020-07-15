@@ -61,36 +61,14 @@ def is_greater(s1, s2):
         0: concatenate(s1, s2) == concatenate(s2, s1)
         -1: concatenate(s1, s2) < concatenate(s2, s1)
     """
-    m = len(s1)
-    n = len(s2)
+    a1 = s1 + s2
+    a2 = s2 + s1
 
-    if m >= n:
-        for i in range(m):
-            j = i % n
-            if s1[i] > s2[j]:
-                return 1
-            elif s1[i] < s2[j]:
-                return -1
-
-        for k in range(j, n):
-            if s1[i] > s2[k]:
-                return 1
-            elif s1[i] < s2[k]:
-                return -1
-        return 0
+    if a1 > a2:
+        return 1
+    elif a1 < a2:
+        return -1
     else:
-        for i in range(n):
-            j = i % m
-            if s1[j] > s2[i]:
-                return 1
-            elif s1[j] < s2[i]:
-                return -1
-
-        for k in range(j, m):
-            if s1[k] > s2[i]:
-                return 1
-            elif s1[k] < s2[i]:
-                return -1
         return 0
 
 

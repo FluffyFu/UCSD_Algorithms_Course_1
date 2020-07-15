@@ -17,35 +17,52 @@ def compute_min_refills(distance, tank, stops):
     Returns:
         int, the minimum number of fuel times if it's possible. Otherwise, returns -1.
     """
+    # adding origin and destination simplifies the checking.
+    # this is important.
+    stops.insert(0, 0)  # add origin.
+    stops.append(distance)  # add destination
     num_fuels = 0
-    previous_pos = 0  # the actual station that fill the tank.
-    current_stop = 0  # index to loop through the gas stations.
+    previous_stop = 0  # index of the previous filling gas station.
+    current_stop = 1  # index to loop through the gas stations.
 
     while current_stop < len(stops):
-        if stops[current_stop] - previous_pos > tank:
+        if stops[current_stop] - stops[previous_stop] > tank:
             # impossible config
             return -1
 
-        while current_stop < len(stops) and (stops[current_stop] - previous_pos <= tank):
+        while current_stop < len(stops) and (stops[current_stop] - stops[previous_stop] <= tank):
             current_stop += 1
 
-        if current_stop == len(stops):
-            # the stops has been exhausted.
-            if distance - previous_pos <= tank:
-                # travel directly from previous_pos to distance
-                return num_fuels
-            elif distance - stops[-1] > tank:
-                # impossible to reach the destination
-                return -1
-            else:
-                # need one more fuel to reach the destination
-                return num_fuels + 1
-
-        else:
-            # update the previous_pos
-            previous_pos = stops[current_stop - 1]
+        # there are two possibilities when the flow reaches here:
+            # 1. current_stop == len(stops), this means destination has been reached in the previous step (current_stop - 1)
+            #       and no extra fuel is needed.
+            # 2. current_stop cannot be reached from previous_stop without fueling, we add one more fueling.
+        if current_stop < len(stops):
+            previous_stop = current_stop - 1
             num_fuels += 1
 
+    return num_fuels
+
+
+def compute_min_refills_v2(distance, tank, stops):
+    """
+    Cleaner version of compute_min_refills.
+    """
+    stops.insert(0, 0)
+    stops.append(distance)
+    current_stop = 1
+    num_fuels = 0
+
+    while current_stop < len(stops):
+        previous_stop = current_stop - 1
+
+        while (current_stop < len(stops)) and (stops[current_stop] - stops[previous_stop] <= tank):
+            current_stop += 1
+
+        if previous_stop == current_stop - 1:
+            return -1
+        if current_stop < len(stops):
+            num_fuels += 1
     return num_fuels
 
 
