@@ -26,17 +26,22 @@ def partition3(a, l, r):
     lt = l
     gt = r
 
-    for i in range(l+1, r+1):
+    i = l + 1
+
+    while i <= gt:
         if a[i] < x:
             lt += 1
             a[lt], a[i] = a[i], a[lt]
-
+            i += 1
+        elif a[i] == x:
+            i += 1
         elif a[i] > x:
-            a[gt], a[i] == a[i], a[gt]
+            # i should not be incremented here, because the switch moves
+            # unseen element to i.
+            a[gt], a[i] = a[i], a[gt]
             gt -= 1
 
     a[l], a[lt] = a[lt], a[l]
-
     return lt, gt
 
 
@@ -52,17 +57,22 @@ def partition2(a, l, r):
 
 
 def randomized_quick_sort_2(a, l, r):
+    """
+    Use two partitions to perform quick sort.
+    """
     if l >= r:
         return
     k = random.randint(l, r)
     a[l], a[k] = a[k], a[l]
-    # use partition3
     m = partition2(a, l, r)
     randomized_quick_sort(a, l, m - 1)
     randomized_quick_sort(a, m + 1, r)
 
 
 def randomized_quick_sort(a, l, r):
+    """
+    Use three partitions to perform quick sort.
+    """
     if l >= r:
         return
     k = random.randint(l, r)

@@ -83,12 +83,16 @@ def fast_count_segments_2(starts, ends, points):
 
     for i, p in enumerate(points):
 
-        # (n - lx) is size of S
-        lx = binary_search(starts, p, 0, n-1, 'right')
+        # ly is the number of elements in ends s.t. p > end
         # (n - ly) is size of A
         ly = binary_search(ends, p, 0, n-1, 'left')
 
+        # lx is the number of elements in starts s.t. p >= start
+        # (n - lx) is size of S
+        lx = binary_search(starts, p, 0, n-1, 'right')
+
         # (n - ly) - (n - lx)
+        # or from the symmetry perspective, lx - ly also makes sense.
         cnt[i] = lx - ly
 
     return cnt

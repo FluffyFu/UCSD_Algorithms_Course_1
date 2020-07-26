@@ -75,7 +75,4 @@ def get_majority_element_naive(a, left, right):
 if __name__ == '__main__':
     input = sys.stdin.read()
     n, *a = list(map(int, input.split()))
-    if get_majority_element(a, 0, n) != -1:
-        print(1)
-    else:
-        print(0)
+    print(get_majority_element(a, 0, n-1))
