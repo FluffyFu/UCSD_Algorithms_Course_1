@@ -3,6 +3,7 @@ from lcs3 import lcs3
 
 
 def test_lcs_3():
+    # pudb.set_trace()
     a = [1, 2, 3]
     b = [2, 1, 3]
     c = [1, 3, 5]

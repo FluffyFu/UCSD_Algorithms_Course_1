@@ -28,8 +28,7 @@ def lcs3(a, b, c):
         for j in range(1, n_b+1):
             for k in range(1, n_c+1):
                 if a[i-1] == b[j-1] == c[k-1]:
-                    D[i][j][k] = min(
-                        (i, j, k, D[i-1][j][k]+1, D[i][j-1][k]+1, D[i][j][k-1]+1))
+                    D[i][j][k] = D[i-1][j-1][k-1] + 1
                 else:
                     D[i][j][k] = max(
                         (D[i-1][j][k], D[i][j-1][k], D[i][j][k-1]))

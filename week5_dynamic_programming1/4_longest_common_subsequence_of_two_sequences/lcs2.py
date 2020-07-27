@@ -29,7 +29,7 @@ def lcs2(a, b):
     for i in range(1, n_a+1):
         for j in range(1, n_b+1):
             if a[i-1] == b[j-1]:
-                D[i][j] = min((i, j, D[i][j-1]+1, D[i-1][j]+1))
+                D[i][j] = D[i-1][j-1]+1
             else:
                 D[i][j] = max((D[i][j-1], D[i-1][j]))
 
