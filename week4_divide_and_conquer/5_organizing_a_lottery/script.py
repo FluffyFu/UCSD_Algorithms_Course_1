@@ -1,4 +1,4 @@
-from points_and_segments import binary_search, single_line_cross, fast_count_segments, naive_count_segments
+from points_and_segments import binary_search, fast_count_segments, naive_count_segments
 import numpy as np
 
 k = 5000
